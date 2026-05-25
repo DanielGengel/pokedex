@@ -5,20 +5,21 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" href="main.css" />
         <link rel="shortcut icon" href="./assets/icons/pokemon-favicon.png" type="image/x-icon" />
-        <script src="main.js"></script>
+        <script src="main.js" type="module"></script>
         <title>Pokedex</title>
     </head>
     <body>
         <header class="mainHeader">
-            <div class="headerContent">
-                <img src="./assets/icons/pokemon-icon.svg" alt="Pokemon Header Icon" />
-            </div>
+            <div class="headerContent"></div>
         </header>
-        <main>
-            <section class="content">
-                <div id="pokedex"></div>
-                <div id="pokemon-modal"></div>
-            </section>
+
+        <main class="content">
+            <div class="hero-background"></div>
+            <div class="pokedexGrid" id="pokedexGridID"></div>
+
+            <div id="loader" class="loader hidden">Loading...</div>
+            <button class="btnLoadMore" id="btnLoadMoreID">Load More</button>
+            <div id="pokemon-modal"></div>
         </main>
         <footer class="mainFooter">©️ Daniel Gengel</footer>
     </body>

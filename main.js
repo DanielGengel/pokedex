@@ -1,3 +1,3 @@
-document.addEventListener("DOMContentLoaded", () => {
-    console.log("loaded");
-});
+import { loadAndRenderPokemon } from "./js/getPokemonData.js";
+
+loadAndRenderPokemon();
