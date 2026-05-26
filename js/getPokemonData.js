@@ -27,31 +27,18 @@ async function loadPokemonList() {
 async function loadPokemonDetails(url) {
     if (pokemonCache[url]) {
         console.log("FROM CACHE");
-
         return pokemonCache[url];
     }
-
     console.log("FETCH API");
-
     const response = await fetch(url);
-
     const data = await response.json();
-
-    console.log(data);
-    
-
     pokemonCache[url] = data;
 
+console.log(pokemonCache[url]);
     return data;
 
     
 }
-
-/*
-========================
-RENDER POKEMON
-========================
-*/
 
 function renderPokemonCards(pokemonList) {
     for (let i = 0; i < pokemonList.length; i++) {
@@ -61,47 +48,18 @@ function renderPokemonCards(pokemonList) {
     }
 }
 
-/*
-official-artwork // dream_world
-*/
-
-// function createPokemonCard(pokemon) {
-//      const type = pokemon.types[0].type.name;
-    
-//     return `
-//         <div class="pokemonCard ${type}" data-id="${pokemon.id}">
-
-//             <img
-//                 class="pokemonImage"
-//                 src="${pokemon.sprites.other["dream_world"].front_default}"
-//             >
-// <p class="pokemonNumber">#${pokemon.id}</p>
-//             <h2 class="pokemonName">${pokemon.name}</h2>
-
-//             <div class="types">
-//                         <div class=${pokemon.type}>${pokemon.height}m</div>
-//                         <div class="type flying">${pokemon.weight}kg</div>
-//                         <div class="type---">${type}</div>
-//                     </div>
-
-//         </div>
-//     `;
-// }
 
 
 
-/*
-official-artwork // dream_world
-*/
+
+
+// official-artwork // dream_world
 
 
 function createPokemonCard(pokemon) {
 
     let typesHTML = "";
 
-    /*
-        Alle Typen durchlaufen
-    */
 
     for (let i = 0; i < pokemon.types.length; i++) {
 
@@ -172,3 +130,143 @@ async function loadNextPage() {
 
     loadAndRenderPokemon();
 }
+
+
+
+const pokedex = document.getElementById("pokedexGridID");
+const overlayContainer = document.getElementById("overlayContainer");
+
+pokedex.addEventListener("click", (event) => {
+    const card = event.target.closest(".pokemonCard");
+
+    if (!card) return;
+
+    const id = card.dataset.id;
+
+    openPokemonOverlay(id);
+});
+
+
+
+async function openPokemonOverlay(id) {
+    showLoader(true);
+
+    let pokemon = null;
+
+    // Cache suchen
+    for (let key in pokemonCache) {
+        if (pokemonCache[key].id == id) {
+            pokemon = pokemonCache[key];
+            break;
+        }
+    }
+
+    // falls nicht im Cache
+    if (!pokemon) {
+        const url = `https://pokeapi.co/api/v2/pokemon/${id}`;
+        pokemon = await loadPokemonDetails(url);
+    }
+
+    overlayContainer.innerHTML = createOverlayHTML(pokemon);
+    overlayContainer.classList.add("active");
+
+    showLoader(false);
+}
+
+
+
+
+
+overlayContainer.addEventListener("click", (event) => {
+    if (event.target.id === "overlayContainer") {
+        closeOverlay();
+    }
+});
+
+function closeOverlay() {
+    overlayContainer.classList.remove("active");
+    overlayContainer.innerHTML = "";
+}
+
+
+
+
+function createOverlayHTML(pokemon) {
+
+    let typesHTML = "";
+
+    for (let i = 0; i < pokemon.types.length; i++) {
+        const type = pokemon.types[i].type.name;
+
+        typesHTML += `
+            <div class="type ${type}">
+                ${type}
+            </div>
+        `;
+    }
+
+    let abilitiesHTML = "";
+
+for (let i = 0; i < pokemon.abilities.length; i++) {
+    abilitiesHTML += `
+        <div>
+            ${pokemon.abilities[i].ability.name}
+        </div>
+    `;
+}
+
+
+let statsHTML = "";
+
+for (let i = 0; i < pokemon.stats.length; i++) {
+    const stat = pokemon.stats[i];
+
+    statsHTML += `
+        <div>
+            ${stat.stat.name}: ${stat.base_stat}
+        </div>
+    `;
+}
+
+    return `
+    <div class="overlayBackground" id="overlayBackground">
+        <div class="overlayCard ${pokemon.types[0].type.name}">
+
+            <button onclick="closeOverlay()" class="closeBtn">X</button>
+
+            <img
+                class="pokemonImage"
+                src="${pokemon.sprites.other["official-artwork"].front_default}"
+            >
+
+            <p class="pokemonNumber">#${pokemon.id}</p>
+
+            <h2 class="pokemonName">${pokemon.name}</h2>
+
+            <div class="pokemonInfo">
+                <div>Height: ${pokemon.height}</div>
+                <div>Weight: ${pokemon.weight}</div>
+            </div>
+
+            <h3>Abilities</h3>
+            <div class="abilities">
+                ${abilitiesHTML}
+            </div>
+
+            <h3>Stats</h3>
+            <div class="stats">
+                ${statsHTML}
+            </div>
+
+            <div class="types">
+                ${typesHTML}
+            </div>
+
+        </div>
+    </div>
+`;
+}
+
+
+
+

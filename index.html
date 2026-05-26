@@ -10,7 +10,10 @@
     </head>
     <body>
         <header class="mainHeader">
-            <div class="headerContent"></div>
+            <div class="headerContent">
+                <img src="./assets/icons/pokemon-icon.svg" alt="Pokemon Header Icon" />
+                <input type="text" name="searchField" id="searchFieldID" placeholder="Find Pokémon..." minlength="3" pattern="[A-Za-z]{3,}" required="" title="sfdsdfsdf">
+            </div>
         </header>
 
         <main class="content">
@@ -19,6 +22,7 @@
 
             <div id="loader" class="loader hidden">Loading...</div>
             <button class="btnLoadMore" id="btnLoadMoreID">Load More</button>
+            <div id="overlayContainer"></div>
             <div id="pokemon-modal"></div>
         </main>
         <footer class="mainFooter">©️ Daniel Gengel</footer>

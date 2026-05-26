@@ -1,63 +1,12 @@
 @import "./css/reset.css";
 @import "./css/fonts.css";
-/* @import "./css/header.css";
-@import "./css/footer.css"; */
-
+@import "./css/variables.css";
+@import "./css/header_footer.css";
 
 
 body {
     font-family: Economica;
-    color: black;
-}
-
-.mainHeader {
-    top: 0;
-}
-
-.headerContent {
-    width: 100%;
-    padding-left: 50px;
-    padding-right: 70px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    img {
-        width: 100px;
-        padding: 20px;
-    }
-
-    #searchFieldID {
-        background-color: white;
-        padding: 10px 10px;
-        font-size: 1.5rem;
-        width: 320px;
-        color: black;
-        border-radius: 15px;
-    }
-}
-
-.mainHeader,
-.mainFooter {
-    /* position: fixed; */
-    left: 0;
-    right: 0;
-
-    height: 10dvh;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    background: rgba(255, 255, 255, 0.08);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-
-    backdrop-filter: blur(18px);
-    -webkit-backdrop-filter: blur(18px);
-    backdrop-filter: blur(20px) saturate(180%);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
-
-    z-index: 10;
+    color: azure;
 }
 
 main {
@@ -68,3 +17,259 @@ main {
 
     min-height: 100dvh;
 }
+
+/* FIXED BACKGROUND */
+.hero-background {
+    position: fixed;
+    inset: 0;
+
+
+    background-image: url("./assets/imgs/background-image.jpg");
+    opacity: 0.9;
+    filter: blur(5px);
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* GRID */
+.pokedexGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 28px;
+    padding: 30px;
+}
+
+/* GLASS CARD */
+.pokemonCard {
+    position: relative;
+    z-index: 1;
+    padding: 24px;
+
+    border-radius: 24px;
+
+    background: rgba(255, 255, 255, 0.08);
+
+    border: 1px solid rgba(255, 255, 255, 0.5);
+
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+
+    box-shadow:
+        0 8px 32px rgba(0, 0, 0, 0.35),
+        inset 0 1px 1px rgba(255, 255, 255, 0.15);
+
+    overflow: hidden;
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        border-color 0.25s ease;
+}
+
+.pokemonCard.fire:hover {
+    background: var(--fire-bg);
+    border: 2px solid var(--fire-border);
+    box-shadow: 0 0 40px var(--fire-shadow);
+}
+
+.pokemonCard.water:hover {
+    background: var(--water-bg);
+    border: 2px solid var(--water-border);
+    box-shadow: 0 0 40px var(--water-shadow);
+}
+
+.pokemonCard.grass:hover {
+    background: var(--grass-bg);
+    border: 2px solid var(--grass-border);
+    box-shadow: 0 0 40px var(--grass-shadow);
+}
+
+.pokemonCard.electric:hover {
+    background: var(--electric-bg);
+    border: 2px solid var(--electric-border);
+    box-shadow: 0 0 40px var(--electric-shadow);
+}
+
+.pokemonCard.poison:hover {
+    background: var(--poison-bg);
+    border: 2px solid var(--poison-border);
+    box-shadow: 0 0 40px var(--poison-shadow);
+}
+
+.pokemonCard.normal:hover {
+    background: var(--normal-bg);
+    border: 2px solid var(--normal-border);
+    box-shadow: 0 0 40px var(--normal-shadow);
+}
+
+.pokemonCard:hover {
+    /*transform:translateY(-8px) scale(1.02);*/
+
+    border-color: rgba(255, 255, 255, 1);
+
+    box-shadow:
+        0 16px 40px rgba(0, 0, 0, 0.45),
+        0 0 20px rgba(255, 255, 255, 0.8);
+
+    overflow: visible;
+    transform: scale(1.1);
+    
+}
+
+/* IMAGE */
+.pokemonImage {
+    width: 140px;
+    height: 140px;
+
+    display: block;
+    margin: 0 auto 20px;
+
+    object-fit: contain;
+
+    filter: drop-shadow(0 8px 18px rgba(0, 0, 0, 0.35));
+
+    transition: transform 0.25s ease;
+}
+
+.pokemonCard:hover .pokemonImage {
+    /* transform: scale(2.5) rotate(5deg); */
+    transform: translateY(-20px) scale(1.8) rotate(12deg);
+    filter: drop-shadow(0 80px 18px rgba(0, 0, 0, 0.35));
+}
+
+/* NUMBER */
+.pokemonNumber {
+    color: azure;
+    opacity: 0.75;
+    font-size: 1rem;
+    margin-bottom: 8px;
+}
+
+/* NAME */
+.pokemonName {
+    color: azure;
+    font-size: 1.4rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 18px;
+}
+
+
+.types {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.type {
+    padding: 6px 12px;
+    border-radius: 9px;
+
+    /* background: rgba(255,255,255,.15); */
+
+    font-size: 0.9rem;
+}
+
+.type.fire {
+    background: var(--fire-bg);
+    border: 1px solid var(--fire-border);
+}
+
+.type.water {
+    background: var(--water-bg);
+    border: 1px solid var(--water-border);
+}
+
+.type.grass {
+    background: var(--grass-bg);
+    border: 1px solid var(--grass-border);
+}
+
+.type.electric {
+    background: var(--electric-bg);
+    border: 1px solid var(--electric-border);
+}
+
+.type.poison {
+    background: var(--poison-bg);
+    border: 1px solid var(--poison-border);
+}
+
+.type.normal {
+    background: var(--normal-bg);
+    border: 1px solid var(--normal-border);
+}
+
+.type {
+    background: var(--normal-bg);
+    border: 1px solid var(--normal-border);
+}
+
+
+
+
+
+
+
+.btnLoadMore {
+    background-color: white;
+    padding: 10px;
+    color: black;
+    border-radius: 15px;
+    width: 20%;
+}
+
+.btnLoadMore:hover {
+    background-color: aqua;
+}
+
+
+
+
+
+#overlayContainer {
+    position: fixed;
+    inset: 0;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0,0,0,0.6);
+    z-index: 2;
+}
+
+#overlayContainer.active {
+    display: flex;
+}
+
+.overlayCard {
+    width: 300px;
+    padding: 20px;
+    border-radius: 20px;
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(20px);
+    color: white;
+    position: relative;
+}
+
+.closeBtn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.abilities, .stats {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.stats div {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9rem;
+}
+
+
