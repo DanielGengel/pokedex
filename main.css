@@ -37,19 +37,28 @@ main {
 .pokedexGrid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 28px;
+    gap: 22px;
     padding: 30px;
+    justify-items: center;
+/* align-items: center; */
+    
 }
 
 /* GLASS CARD */
 .pokemonCard {
+    width: 240px;
+    /* width: 280px; */
+    /* max-width: 3200px; */
     position: relative;
     z-index: 1;
     padding: 24px;
 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     border-radius: 24px;
 
-    background: rgba(255, 255, 255, 0.08);
+    /* background: rgba(255, 255, 255, 0.08); */
 
     border: 1px solid rgba(255, 255, 255, 0.5);
 
@@ -68,44 +77,53 @@ main {
         border-color 0.25s ease;
 }
 
-.pokemonCard.fire:hover {
-    background: var(--fire-bg);
-    border: 2px solid var(--fire-border);
-    box-shadow: 0 0 40px var(--fire-shadow);
+.pokemonCard,
+.overlayCard,
+.tabBtn,
+.statBar {
+    --type-bg: var(--default-bg);
+    --type-border: var(--default-border);
+    --type-shadow: var(--default-shadow);
 }
 
-.pokemonCard.water:hover {
-    background: var(--water-bg);
-    border: 2px solid var(--water-border);
-    box-shadow: 0 0 40px var(--water-shadow);
+.fire {
+    --type-bg: var(--fire-bg);
+    --type-border: var(--fire-border);
+    --type-shadow: var(--fire-shadow);
 }
 
-.pokemonCard.grass:hover {
-    background: var(--grass-bg);
-    border: 2px solid var(--grass-border);
-    box-shadow: 0 0 40px var(--grass-shadow);
+.water {
+    --type-bg: var(--water-bg);
+    --type-border: var(--water-border);
+    --type-shadow: var(--water-shadow);
 }
 
-.pokemonCard.electric:hover {
-    background: var(--electric-bg);
-    border: 2px solid var(--electric-border);
-    box-shadow: 0 0 40px var(--electric-shadow);
+.grass {
+    --type-bg: var(--grass-bg);
+    --type-border: var(--grass-border);
+    --type-shadow: var(--grass-shadow);
 }
 
-.pokemonCard.poison:hover {
-    background: var(--poison-bg);
-    border: 2px solid var(--poison-border);
-    box-shadow: 0 0 40px var(--poison-shadow);
+.electric {
+    --type-bg: var(--electric-bg);
+    --type-border: var(--electric-border);
+    --type-shadow: var(--electric-shadow);
 }
 
-.pokemonCard.normal:hover {
-    background: var(--normal-bg);
-    border: 2px solid var(--normal-border);
-    box-shadow: 0 0 40px var(--normal-shadow);
+.poison {
+    --type-bg: var(--poison-bg);
+    --type-border: var(--poison-border);
+    --type-shadow: var(--poison-shadow);
 }
 
-.pokemonCard:hover {
-    /*transform:translateY(-8px) scale(1.02);*/
+.normal {
+    --type-bg: var(--normal-bg);
+    --type-border: var(--normal-border);
+    --type-shadow: var(--normal-shadow);
+}
+
+/* .pokemonCard:hover {
+    
 
     border-color: rgba(255, 255, 255, 1);
 
@@ -116,6 +134,15 @@ main {
     overflow: visible;
     transform: scale(1.1);
     
+} */
+
+.pokemonCard:hover {
+    background: var(--type-bg);
+    border: 2px solid var(--type-border);
+    box-shadow: 0 0 40px var(--type-shadow);
+
+    overflow: visible;
+    transform: scale(1.1);
 }
 
 /* IMAGE */
@@ -244,32 +271,20 @@ main {
 }
 
 .overlayCard {
-    width: 300px;
+    width: 330px;
     padding: 20px;
+    margin: 20px;
     border-radius: 20px;
-    background: rgba(255,255,255,0.1);
+    /* background: rgba(255,255,255,0.1); */
     backdrop-filter: blur(20px);
     color: white;
     position: relative;
+    height: 570px;
+    background: var(--type-bg);
+    border: 2px solid var(--type-border);
+    box-shadow: 0 0 40px var(--type-shadow);
 }
 
-.closeBtn {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-}
 
-.abilities, .stats {
-    margin-top: 10px;
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-}
-
-.stats div {
-    display: flex;
-    justify-content: space-between;
-    font-size: 0.9rem;
-}
 
 
