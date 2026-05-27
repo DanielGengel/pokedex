@@ -3,6 +3,21 @@ const pokemonCache = {};
 const pokemonLimit = 20;
 let offset = 0;
 
+const pokedex = document.getElementById("pokedexGridID");
+const overlayContainer = document.getElementById("overlayContainer");
+
+pokedex.addEventListener("click", (event) => {
+    const card = event.target.closest(".pokemonCard");
+
+    if (!card) return;
+
+    const id = card.dataset.id;
+
+    openPokemonOverlay(id);
+});
+
+
+
 export async function loadAndRenderPokemon() {
     showLoader(true);
     const pokemonList = await loadPokemonList();
@@ -43,7 +58,7 @@ console.log(pokemonCache[url]);
 function renderPokemonCards(pokemonList) {
     for (let i = 0; i < pokemonList.length; i++) {
         const pokemon = pokemonList[i];
-        const pokedex = document.getElementById("pokedexGridID");
+        //const pokedex = document.getElementById("pokedexGridID");
         pokedex.innerHTML += createPokemonCard(pokemon);
     }
 }
@@ -133,18 +148,7 @@ async function loadNextPage() {
 
 
 
-const pokedex = document.getElementById("pokedexGridID");
-const overlayContainer = document.getElementById("overlayContainer");
 
-pokedex.addEventListener("click", (event) => {
-    const card = event.target.closest(".pokemonCard");
-
-    if (!card) return;
-
-    const id = card.dataset.id;
-
-    openPokemonOverlay(id);
-});
 
 
 
@@ -156,6 +160,7 @@ async function openPokemonOverlay(id) {
     // Cache suchen
     for (let key in pokemonCache) {
         if (pokemonCache[key].id == id) {
+            console.log("Pokemon from cache");
             pokemon = pokemonCache[key];
             break;
         }
@@ -163,6 +168,8 @@ async function openPokemonOverlay(id) {
 
     // falls nicht im Cache
     if (!pokemon) {
+        console.log("Pokemon NOT from cache");
+        
         const url = `https://pokeapi.co/api/v2/pokemon/${id}`;
         pokemon = await loadPokemonDetails(url);
     }

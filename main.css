@@ -288,3 +288,102 @@ main {
 
 
 
+.closeBtn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.abilities, .stats {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.stats div {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9rem;
+}
+
+
+.overlayTabs {
+    display: flex;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.tabBtn {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: bold;
+    background-color: white;
+    color: black;
+}
+
+.tabBtn.active {
+    /* background-color: black; */
+    color: white;
+}
+
+.tabContent {
+    display: none;
+    margin-top: 20px;
+}
+
+.tabContent.active {
+    display: block;
+}
+
+.statRow {
+    margin-bottom: 6px;
+}
+
+.statName {
+    margin-bottom: 6px;
+    text-transform: capitalize;
+}
+
+.statBarContainer {
+    width: 50%;
+    height: 16px;
+    background-color: rgba(255,255,255,0.3);
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.statBar {
+    height: 100%;
+    background-color: white;
+    color: black;
+    font-weight: bold;
+    padding-left: 10px;
+    display: flex;
+    align-items: center;
+    border-radius: 20px;
+}
+
+/* .overlayBackground {
+    background: color-mix(in srgb, var(--type-bg) 40%, black);
+} */
+
+
+
+.tabBtn {
+    background: var(--type-bg);
+    font-weight: 400;
+    color: white;
+}
+
+.tabBtn.active {
+    transform: scale(1.1);
+    font-weight: bold;
+    border: 2px solid white;
+}
+
+
+
