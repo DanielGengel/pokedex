@@ -12,16 +12,16 @@
         <header class="mainHeader">
             <div class="headerContent">
                 <img src="./assets/icons/pokemon-icon.svg" alt="Pokemon Header Icon" />
-                <input type="text" name="searchField" id="searchFieldID" placeholder="Find Pokémon..." minlength="3" pattern="[A-Za-z]{3,}" required="" title="sfdsdfsdf">
+                <input type="text" name="searchField" id="searchFieldID" data-id="search-input" placeholder="Find Pokémon..." minlength="3" pattern="[A-Za-z]{3,}" required="" title="sfdsdfsdf">
             </div>
         </header>
 
-        <main class="content">
+        <main class="content" data-id="content">
             <div class="hero-background"></div>
             <div class="pokedexGrid" id="pokedexGridID"></div>
 
             <div id="loader" class="loader hidden">Loading...</div>
-            <button class="btnLoadMore" id="btnLoadMoreID">Load More</button>
+            <button class="btnLoadMore" id="btnLoadMoreID" data-id="load-more-button">Load More</button>
             <div id="overlayContainer"></div>
             <div id="pokemon-modal"></div>
         </main>

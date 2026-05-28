@@ -13,7 +13,7 @@ main {
     max-width: 1440px;
     margin: 0 auto;
 
-    padding: 12dvh 30px; /* Platz für Header + Footer */
+    padding: 20px;
 
     min-height: 100dvh;
 }
@@ -37,7 +37,7 @@ main {
 .pokedexGrid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 22px;
+    gap: 25px;
     padding: 30px;
     justify-items: center;
 /* align-items: center; */
@@ -50,8 +50,8 @@ main {
     /* width: 280px; */
     /* max-width: 3200px; */
     position: relative;
-    z-index: 1;
-    padding: 24px;
+    z-index: 5;
+    padding: 25px;
 
     display: flex;
     flex-direction: column;
@@ -62,7 +62,7 @@ main {
 
     border: 1px solid rgba(255, 255, 255, 0.5);
 
-    backdrop-filter: blur(18px);
+    backdrop-filter: blur(15px);
     -webkit-backdrop-filter: blur(18px);
 
     box-shadow:
@@ -140,9 +140,13 @@ main {
     background: var(--type-bg);
     border: 2px solid var(--type-border);
     box-shadow: 0 0 40px var(--type-shadow);
-
+margin-top: 20px;
     overflow: visible;
     transform: scale(1.1);
+
+    .pokemonNumber {
+        display: none;
+    }
 }
 
 /* IMAGE */
@@ -168,10 +172,11 @@ main {
 
 /* NUMBER */
 .pokemonNumber {
-    color: azure;
-    opacity: 0.75;
-    font-size: 1rem;
+    color: white;
+    opacity: 1;
+    font-size: 1.2rem;
     margin-bottom: 8px;
+ width: 100%;
 }
 
 /* NAME */
@@ -180,7 +185,15 @@ main {
     font-size: 1.4rem;
     font-weight: 700;
     text-transform: uppercase;
-    margin-bottom: 18px;
+    margin-top: 15px;
+    margin-bottom: 10px;
+    background-color: var(--type-bg);
+    
+    padding: 10px;
+    border-radius: 10px;
+    backdrop-filter: blur(180px);
+    /* -webkit-backdrop-filter: blur(18px); */
+
 }
 
 
@@ -192,7 +205,7 @@ main {
 
 .type {
     padding: 6px 12px;
-    border-radius: 9px;
+    border-radius: 10px;
 
     /* background: rgba(255,255,255,.15); */
 
@@ -263,7 +276,13 @@ main {
     justify-content: center;
     align-items: center;
     background: rgba(0,0,0,0.6);
-    z-index: 2;
+    z-index: 5;
+
+
+    .pokemonImage {
+        transform: scale(2.5);
+        margin-bottom: 70px;
+    }
 }
 
 #overlayContainer.active {
@@ -272,49 +291,87 @@ main {
 
 .overlayCard {
     width: 330px;
+    height: 600px;
     padding: 20px;
     margin: 20px;
     border-radius: 20px;
     /* background: rgba(255,255,255,0.1); */
+
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     backdrop-filter: blur(20px);
     color: white;
     position: relative;
-    height: 570px;
+    
     background: var(--type-bg);
     border: 2px solid var(--type-border);
     box-shadow: 0 0 40px var(--type-shadow);
+
+    
 }
 
 
+
+/* .overlayCard img:hover {
+width: 100%;
+height: 100%;
+overflow: visible;
+} */
 
 
 .closeBtn {
     position: absolute;
     top: 10px;
     right: 10px;
+    padding: 10px;
+    font-size: 1.2rem;
+    font-weight: bold;
+   z-index: 99;
 }
+
+.closeBtn:hover {
+        
+     transform: scale(1.2) rotate(30deg);
+     background-color: white;
+     width: 50px;
+     height: 50px;
+     border-radius: 99px;
+     color: black;
+     border: 2px solid var(--type-border);
+
+     /* opacity: 1; */
+    /* filter: drop-shadow(0 80px 18px rgba(0, 0, 0, 0.35)); */
+
+}
+
 
 .abilities, .stats {
     margin-top: 10px;
     display: flex;
     flex-direction: column;
+    /* justify-content: space-between; */
     gap: 4px;
+    
 }
 
 .stats div {
     display: flex;
-    justify-content: space-between;
+    /* justify-content: space-between; */
     font-size: 0.9rem;
+    /* width: 100%; */
 }
 
 
 .overlayTabs {
     display: flex;
     gap: 12px;
-    margin-top: 20px;
+    margin-top: 20px;width: 100%;
 }
 
 .tabBtn {
+    /* width: 100px; */
     flex: 1;
     padding: 10px;
     border: none;
@@ -332,7 +389,9 @@ main {
 
 .tabContent {
     display: none;
-    margin-top: 20px;
+    margin-top: 10px;
+    width: 100%;
+
 }
 
 .tabContent.active {
@@ -340,7 +399,10 @@ main {
 }
 
 .statRow {
-    margin-bottom: 6px;
+    display: flex;
+    gap: 50px;
+    justify-content: space-between;
+    margin-bottom: 5px;
 }
 
 .statName {
@@ -350,6 +412,7 @@ main {
 
 .statBarContainer {
     width: 50%;
+    
     height: 16px;
     background-color: rgba(255,255,255,0.3);
     border-radius: 20px;
@@ -358,6 +421,7 @@ main {
 
 .statBar {
     height: 100%;
+
     background-color: white;
     color: black;
     font-weight: bold;
@@ -385,5 +449,25 @@ main {
     border: 2px solid white;
 }
 
+#moreTab.tabContent.active {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
 
 
+
+
+
+
+.pokemonNavigation {
+    display: flex;
+    gap: 40px;
+}
+
+.navBtn {
+    font-size: 30px;
+    color: white;
+}

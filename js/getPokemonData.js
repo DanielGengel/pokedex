@@ -16,8 +16,6 @@ pokedex.addEventListener("click", (event) => {
     openPokemonOverlay(id);
 });
 
-
-
 export async function loadAndRenderPokemon() {
     showLoader(true);
     const pokemonList = await loadPokemonList();
@@ -49,10 +47,9 @@ async function loadPokemonDetails(url) {
     const data = await response.json();
     pokemonCache[url] = data;
 
-console.log(pokemonCache[url]);
+    console.log(pokemonCache[url]);
+    console.log("url ===> " + url);
     return data;
-
-    
 }
 
 function renderPokemonCards(pokemonList) {
@@ -63,21 +60,12 @@ function renderPokemonCards(pokemonList) {
     }
 }
 
-
-
-
-
-
 // official-artwork // dream_world
 
-
 function createPokemonCard(pokemon) {
-
     let typesHTML = "";
 
-
     for (let i = 0; i < pokemon.types.length; i++) {
-
         const type = pokemon.types[i].type.name;
 
         typesHTML += `
@@ -89,15 +77,15 @@ function createPokemonCard(pokemon) {
 
     return `
         <div class="pokemonCard ${pokemon.types[0].type.name}" data-id="${pokemon.id}">
-
+<p class="pokemonNumber">
+                #${pokemon.id}
+            </p>
             <img
                 class="pokemonImage"
                 src="${pokemon.sprites.other["official-artwork"].front_default}"
             >
 
-            <p class="pokemonNumber">
-                #${pokemon.id}
-            </p>
+            
 
             <h2 class="pokemonName">
                 ${pokemon.name}
@@ -106,11 +94,9 @@ function createPokemonCard(pokemon) {
             <div class="pokemonInfo">
 
                 <div>
-                    Height: ${pokemon.height}
-                </div>
-
-                <div>
-                    Weight: ${pokemon.weight}
+                    Height: ${pokemon.height}m |
+                
+                    Weight: ${pokemon.weight}kg
                 </div>
 
             </div>
@@ -146,12 +132,6 @@ async function loadNextPage() {
     loadAndRenderPokemon();
 }
 
-
-
-
-
-
-
 async function openPokemonOverlay(id) {
     showLoader(true);
 
@@ -169,7 +149,7 @@ async function openPokemonOverlay(id) {
     // falls nicht im Cache
     if (!pokemon) {
         console.log("Pokemon NOT from cache");
-        
+
         const url = `https://pokeapi.co/api/v2/pokemon/${id}`;
         pokemon = await loadPokemonDetails(url);
     }
@@ -179,10 +159,6 @@ async function openPokemonOverlay(id) {
 
     showLoader(false);
 }
-
-
-
-
 
 overlayContainer.addEventListener("click", (event) => {
     if (event.target.id === "overlayContainer") {
@@ -194,9 +170,6 @@ function closeOverlay() {
     overlayContainer.classList.remove("active");
     overlayContainer.innerHTML = "";
 }
-
-
-
 
 // function createOverlayHTML(pokemon) {
 
@@ -221,7 +194,6 @@ function closeOverlay() {
 //         </div>
 //     `;
 // }
-
 
 // let statsHTML = "";
 
@@ -274,10 +246,7 @@ function closeOverlay() {
 // `;
 // }
 
-
-
 function createOverlayHTML(pokemon) {
-
     let typesHTML = "";
 
     for (let i = 0; i < pokemon.types.length; i++) {
@@ -304,11 +273,9 @@ function createOverlayHTML(pokemon) {
     let statsHTML = "";
 
     for (let i = 0; i < pokemon.stats.length; i++) {
-
         const stat = pokemon.stats[i];
 
-         const statPercent = (stat.base_stat / 255) * 100;
-
+        const statPercent = (stat.base_stat / 255) * 100;
 
         statsHTML += `
     <div class="statRow">
@@ -332,10 +299,13 @@ function createOverlayHTML(pokemon) {
 `;
     }
 
-    return `
+   return `
     <div class="overlayBackground ${pokemon.types[0].type.name}">
 
     <div class="overlayCard ${pokemon.types[0].type.name}">
+        <p class="pokemonNumber">
+            #${pokemon.id}
+        </p>
 
         <button onclick="closeOverlay()" class="closeBtn">
             X
@@ -346,16 +316,18 @@ function createOverlayHTML(pokemon) {
             src="${pokemon.sprites.other["official-artwork"].front_default}"
         >
 
-        <p class="pokemonNumber">
-            #${pokemon.id}
-        </p>
+        <div class="pokemonNavigation">
+            <button class="navBtn" onclick="showPreviousPokemon()">
+                ◀
+            </button>
 
-        <h2 class="pokemonName">
-            ${pokemon.name}
-        </h2>
+            <h2 class="pokemonName">
+                ${pokemon.name}
+            </h2>
 
-        <div class="types">
-            ${typesHTML}
+            <button class="navBtn" onclick="showNextPokemon()">
+                ▶
+            </button>
         </div>
 
         <div class="overlayTabs">
@@ -376,54 +348,53 @@ function createOverlayHTML(pokemon) {
 
         </div>
 
-            <div id="moreTab" class="tabContent active">
-
-                <div class="pokemonInfo">
-                    <div>Height: ${pokemon.height}</div>
-                    <div>Weight: ${pokemon.weight}</div>
-                </div>
-
-                <div class="abilities"><h3>Abilities: ${abilitiesHTML}</h3></div>
-
-               
-
+        <div id="moreTab" class="tabContent active">
+            <div class="types">
+                ${typesHTML}
             </div>
 
-            <div id="statsTab" class="tabContent">
-
-                <div class="stats">
-                    ${statsHTML}
-                </div>
-
+            <div class="pokemonInfo">
+                <div>Height: ${pokemon.height}m</div>
+                <div>Weight: ${pokemon.weight}kg</div>
             </div>
 
+            <div class="abilities">
+                <h3>Abilities: ${abilitiesHTML}</h3>
+            </div>
+        </div>
+
+        <div id="statsTab" class="tabContent">
+            <div class="stats">
+                ${statsHTML}
+            </div>
         </div>
 
     </div>
-    `;
+</div>
+`;
 }
 
 
-function showTab(tab) {
 
+
+
+
+function showTab(tab) {
     const moreTab = document.getElementById("moreTab");
     const statsTab = document.getElementById("statsTab");
 
     const buttons = document.querySelectorAll(".tabBtn");
 
-    buttons.forEach(btn => {
+    buttons.forEach((btn) => {
         btn.classList.remove("active");
     });
 
     if (tab === "more") {
-
         moreTab.classList.add("active");
         statsTab.classList.remove("active");
 
         buttons[0].classList.add("active");
-
     } else {
-
         statsTab.classList.add("active");
         moreTab.classList.remove("active");
 
