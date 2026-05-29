@@ -88,6 +88,12 @@ main {
     --type-shadow: var(--default-shadow);
 }
 
+.normal {
+    --type-bg: var(--normal-bg);
+    --type-border: var(--normal-border);
+    --type-shadow: var(--normal-shadow);
+}
+
 .fire {
     --type-bg: var(--fire-bg);
     --type-border: var(--fire-border);
@@ -118,11 +124,7 @@ main {
     --type-shadow: var(--poison-shadow);
 }
 
-.normal {
-    --type-bg: var(--normal-bg);
-    --type-border: var(--normal-border);
-    --type-shadow: var(--normal-shadow);
-}
+
 
 /* .pokemonCard:hover {
     
@@ -197,10 +199,14 @@ main {
     /* -webkit-backdrop-filter: blur(18px); */
 }
 
+.pokemonInfo {
+    margin-top: 10px;
+}
+
 .types {
     display: flex;
     gap: 10px;
-    margin-top: 20px;
+    margin-top: 10px;
 }
 
 .type {
@@ -210,6 +216,16 @@ main {
     /* background: rgba(255,255,255,.15); */
 
     font-size: 0.9rem;
+}
+
+.type {
+    background: var(--normal-bg);
+    border: 1px solid var(--normal-border);
+}
+
+.type.normal {
+    background: var(--normal-bg);
+    border: 1px solid var(--normal-border);
 }
 
 .type.fire {
@@ -237,17 +253,11 @@ main {
     border: 1px solid var(--poison-border);
 }
 
-.type.normal {
-    background: var(--normal-bg);
-    border: 1px solid var(--normal-border);
-}
 
-.type {
-    background: var(--normal-bg);
-    border: 1px solid var(--normal-border);
-}
 
-#overlayContainer {
+
+
+#overlayContainerID {
     position: fixed;
     inset: 0;
     display: none;
@@ -262,7 +272,7 @@ main {
     }
 }
 
-#overlayContainer.active {
+#overlayContainerID.active {
     display: flex;
 }
 
@@ -307,7 +317,7 @@ overflow: visible;
     background-color: white;
     width: 50px;
     height: 50px;
-    border-radius: 99px;
+    border-radius: 50%;
     color: black;
     border: 2px solid var(--type-border);
 
@@ -423,13 +433,25 @@ overflow: visible;
 }
 
 .pokemonNavigation {
+    width: 100%;
     display: flex;
-    gap: 40px;
+    align-items: center;
+    justify-content: space-between;
+    /* gap: 40px; */
 }
 
 .navBtn {
     font-size: 30px;
     color: white;
+}
+
+.navBtn:hover {
+    font-size: 30px;
+    color: var(--type-border);
+    opacity: 1;
+    transform: scale(1.3);
+    cursor: pointer;
+
 }
 
 .buttonContainer {
@@ -439,7 +461,8 @@ overflow: visible;
     align-items: center;
     justify-content: center;
 
-    .btnLoadMore {
+    .btnLoadMore, 
+    .btnResetSearch {
         background-color: grey;
         color: white;
 
@@ -449,8 +472,13 @@ overflow: visible;
         font-size: 1.5rem;
     }
 
-    .btnLoadMore:hover {
+    .btnLoadMore:hover,
+    .btnResetSearch:hover {
         background-color: red;
+    }
+
+    .btnResetSearch {
+        display: none;
     }
 }
 
@@ -463,27 +491,33 @@ overflow: visible;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background: rgba(0, 0, 0, 0.6);
+    background: rgba(157, 157, 157, 0.6);
     z-index: 9;
 
     p {
         font-size: 3rem;
         margin-top: 10px;
+        background-color: white;
+        padding: 10px 20px;
+        border-radius: 15px;
+
+        color: black;
 
     }
 }
 
 .loader {
     
-    width: 300px;
-    height: 300px;
-    border-radius: 999px;
+    width: 320px;
+    height: 320px;
+    border-radius: 50%;
     border: 2px solid white;
     display: flex;
     flex-direction: column;
     align-items: center;
     backdrop-filter: blur(20px);
     color: rgb(12, 12, 12); 
+    z-index: 99;
 }
 
 .loaderContainer.showLoader {
@@ -491,10 +525,7 @@ overflow: visible;
 
 }
 
-/*
-    JEDES Bild bekommt seinen eigenen
-    Rotations-Offset per CSS Variable.
-*/
+
 .loader img {
     --start: 0deg;
     --mid: 90deg;
@@ -512,7 +543,7 @@ overflow: visible;
     animation: pokemonSpinner 5s infinite linear;
 }
 
-/* Winkel werden fortlaufend weitergeführt */
+/* Starting angles for each picture...  */
 .loader img:nth-child(1) {
     animation-delay: 0s;
     --start: 0deg;
@@ -555,19 +586,19 @@ overflow: visible;
         transform: scale(0.7) rotate(var(--start));
     }
 
-    /* Einblenden */
+    /* Quick fade-in */
     10% {
         opacity: 1;
         transform: scale(1.2) rotate(var(--mid));
     }
 
-    /* Direkt wieder aus */
+    /* Fade out */
     20% {
         opacity: 0;
         transform: scale(0.7) rotate(var(--end));
     }
 
-    /* Winkel halten */
+    /* Turn image */
     100% {
         opacity: 0;
         transform: scale(0.7) rotate(var(--end));

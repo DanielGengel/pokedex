@@ -13,48 +13,26 @@
             <div class="headerContent">
                 <img src="./assets/icons/pokemon-icon.svg" alt="Pokemon Header Icon" />
                 <div class="searchBar">
-                    <input
-                        type="text"
-                        name="searchField"
-                        id="searchFieldID"
-                        data-id="search-input"
-                        placeholder="Find Pokémon..."
-                        minlength="3"
-                        pattern="[A-Za-z]{3,}"
-                        required=""
-                        title="sfdsdfsdf"
-                    />
+                    <input type="text" name="searchField" id="searchFieldID" data-id="search-input" placeholder="Find Pokémon..." minlength="3"/>
                     <button class="btnSearch" id="btnSearchID" data-id="btnSearchDataID">Search</button>
                 </div>
             </div>
         </header>
-
         <main class="content" data-id="content">
             <div class="hero-background"></div>
             <div class="pokedexGrid" id="pokedexGridID"></div>
-            <div id="overlayContainer"></div>
-            <!-- <div id="pokemon-modal"></div> -->
-            <!-- <div id="loader" class="loader hidden"></div> -->
+            <div class="overlayContainer" id="overlayContainerID"></div>
             <div class="buttonContainer">
                 <button class="btnLoadMore" id="btnLoadMoreID" data-id="load-more-button">Load more...</button>
+                <button class="btnResetSearch" id="btnResetSearchID" data-id="reset-search-button">Reset</button>
             </div>
             <div class="loaderContainer" id="loaderContainerID">
                 <div class="loader" id="loaderID">
-                    <img
-                        src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/1.svg"
-                    />
-                    <img
-                        src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/3.svg"
-                    />
-                    <img
-                        src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/4.svg"
-                    />
-                    <img
-                        src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/9.svg"
-                    />
-                    <img
-                        src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/18.svg"
-                    />
+                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/1.svg"/>
+                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/3.svg"/>
+                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/4.svg"/>
+                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/9.svg"/>
+                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/18.svg"/>
                 </div>
                 <p>LOADING...</p>
             </div>
