@@ -3,10 +3,14 @@
 @import "./css/variables.css";
 @import "./css/header_footer.css";
 
-
 body {
     font-family: Economica;
     color: azure;
+}
+
+/* no-scroll is set by openPokemonOverlay and showLoader */
+body.no-scroll {
+    overflow: hidden;
 }
 
 main {
@@ -22,7 +26,6 @@ main {
 .hero-background {
     position: fixed;
     inset: 0;
-
 
     background-image: url("./assets/imgs/background-image.jpg");
     opacity: 0.9;
@@ -40,8 +43,7 @@ main {
     gap: 25px;
     padding: 30px;
     justify-items: center;
-/* align-items: center; */
-    
+    /* align-items: center; */
 }
 
 /* GLASS CARD */
@@ -140,7 +142,7 @@ main {
     background: var(--type-bg);
     border: 2px solid var(--type-border);
     box-shadow: 0 0 40px var(--type-shadow);
-margin-top: 20px;
+    margin-top: 20px;
     overflow: visible;
     transform: scale(1.1);
 
@@ -176,7 +178,7 @@ margin-top: 20px;
     opacity: 1;
     font-size: 1.2rem;
     margin-bottom: 8px;
- width: 100%;
+    width: 100%;
 }
 
 /* NAME */
@@ -188,14 +190,12 @@ margin-top: 20px;
     margin-top: 15px;
     margin-bottom: 10px;
     background-color: var(--type-bg);
-    
+
     padding: 10px;
     border-radius: 10px;
     backdrop-filter: blur(180px);
     /* -webkit-backdrop-filter: blur(18px); */
-
 }
-
 
 .types {
     display: flex;
@@ -247,40 +247,17 @@ margin-top: 20px;
     border: 1px solid var(--normal-border);
 }
 
-
-
-
-
-
-
-.btnLoadMore {
-    background-color: white;
-    padding: 10px;
-    color: black;
-    border-radius: 15px;
-    width: 20%;
-}
-
-.btnLoadMore:hover {
-    background-color: aqua;
-}
-
-
-
-
-
 #overlayContainer {
     position: fixed;
     inset: 0;
     display: none;
     justify-content: center;
     align-items: center;
-    background: rgba(0,0,0,0.6);
+    background: rgba(0, 0, 0, 0.6);
     z-index: 5;
 
-
     .pokemonImage {
-        transform: scale(2.5);
+        transform: scale(2.2);
         margin-bottom: 70px;
     }
 }
@@ -297,29 +274,23 @@ margin-top: 20px;
     border-radius: 20px;
     /* background: rgba(255,255,255,0.1); */
 
-
     display: flex;
     flex-direction: column;
     align-items: center;
     backdrop-filter: blur(20px);
     color: white;
     position: relative;
-    
+
     background: var(--type-bg);
     border: 2px solid var(--type-border);
     box-shadow: 0 0 40px var(--type-shadow);
-
-    
 }
-
-
 
 /* .overlayCard img:hover {
 width: 100%;
 height: 100%;
 overflow: visible;
 } */
-
 
 .closeBtn {
     position: absolute;
@@ -328,32 +299,29 @@ overflow: visible;
     padding: 10px;
     font-size: 1.2rem;
     font-weight: bold;
-   z-index: 99;
+    z-index: 99;
 }
 
 .closeBtn:hover {
-        
-     transform: scale(1.2) rotate(30deg);
-     background-color: white;
-     width: 50px;
-     height: 50px;
-     border-radius: 99px;
-     color: black;
-     border: 2px solid var(--type-border);
+    transform: scale(1.2) rotate(30deg);
+    background-color: white;
+    width: 50px;
+    height: 50px;
+    border-radius: 99px;
+    color: black;
+    border: 2px solid var(--type-border);
 
-     /* opacity: 1; */
+    /* opacity: 1; */
     /* filter: drop-shadow(0 80px 18px rgba(0, 0, 0, 0.35)); */
-
 }
 
-
-.abilities, .stats {
+.abilities,
+.stats {
     margin-top: 10px;
     display: flex;
     flex-direction: column;
     /* justify-content: space-between; */
     gap: 4px;
-    
 }
 
 .stats div {
@@ -363,11 +331,11 @@ overflow: visible;
     /* width: 100%; */
 }
 
-
 .overlayTabs {
     display: flex;
     gap: 12px;
-    margin-top: 20px;width: 100%;
+    margin-top: 20px;
+    width: 100%;
 }
 
 .tabBtn {
@@ -391,7 +359,6 @@ overflow: visible;
     display: none;
     margin-top: 10px;
     width: 100%;
-
 }
 
 .tabContent.active {
@@ -412,9 +379,9 @@ overflow: visible;
 
 .statBarContainer {
     width: 50%;
-    
+
     height: 16px;
-    background-color: rgba(255,255,255,0.3);
+    background-color: rgba(255, 255, 255, 0.3);
     border-radius: 20px;
     overflow: hidden;
 }
@@ -434,8 +401,6 @@ overflow: visible;
 /* .overlayBackground {
     background: color-mix(in srgb, var(--type-bg) 40%, black);
 } */
-
-
 
 .tabBtn {
     background: var(--type-bg);
@@ -457,11 +422,6 @@ overflow: visible;
     gap: 20px;
 }
 
-
-
-
-
-
 .pokemonNavigation {
     display: flex;
     gap: 40px;
@@ -470,4 +430,146 @@ overflow: visible;
 .navBtn {
     font-size: 30px;
     color: white;
+}
+
+.buttonContainer {
+    width: 100%;
+    padding: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .btnLoadMore {
+        background-color: grey;
+        color: white;
+
+        padding: 10px 35px;
+        border: 1px solid white;
+        border-radius: 15px;
+        font-size: 1.5rem;
+    }
+
+    .btnLoadMore:hover {
+        background-color: red;
+    }
+}
+
+
+
+.loaderContainer {
+    position: fixed;
+    inset: 0;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 9;
+
+    p {
+        font-size: 3rem;
+        margin-top: 10px;
+
+    }
+}
+
+.loader {
+    
+    width: 300px;
+    height: 300px;
+    border-radius: 999px;
+    border: 2px solid white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    backdrop-filter: blur(20px);
+    color: rgb(12, 12, 12); 
+}
+
+.loaderContainer.showLoader {
+    display: flex;
+
+}
+
+/*
+    JEDES Bild bekommt seinen eigenen
+    Rotations-Offset per CSS Variable.
+*/
+.loader img {
+    --start: 0deg;
+    --mid: 90deg;
+    --end: 180deg;
+
+    position: absolute;
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+
+    opacity: 0;
+
+    animation: pokemonSpinner 5s infinite linear;
+}
+
+/* Winkel werden fortlaufend weitergeführt */
+.loader img:nth-child(1) {
+    animation-delay: 0s;
+    --start: 0deg;
+    --mid: 45deg;
+    --end: 90deg;
+}
+
+.loader img:nth-child(2) {
+    animation-delay: 1s;
+    --start: 90deg;
+    --mid: 135deg;
+    --end: 180deg;
+}
+
+.loader img:nth-child(3) {
+    animation-delay: 2s;
+    --start: 180deg;
+    --mid: 225deg;
+    --end: 270deg;
+}
+
+.loader img:nth-child(4) {
+    animation-delay: 3s;
+    --start: 270deg;
+    --mid: 315deg;
+    --end: 360deg;
+}
+
+.loader img:nth-child(5) {
+    animation-delay: 4s;
+    --start: 360deg;
+    --mid: 405deg;
+    --end: 450deg;
+}
+
+@keyframes pokemonSpinner {
+    /* Start */
+    0% {
+        opacity: 0;
+        transform: scale(0.7) rotate(var(--start));
+    }
+
+    /* Einblenden */
+    10% {
+        opacity: 1;
+        transform: scale(1.2) rotate(var(--mid));
+    }
+
+    /* Direkt wieder aus */
+    20% {
+        opacity: 0;
+        transform: scale(0.7) rotate(var(--end));
+    }
+
+    /* Winkel halten */
+    100% {
+        opacity: 0;
+        transform: scale(0.7) rotate(var(--end));
+    }
 }

@@ -4,6 +4,7 @@
 
 .headerContent {
     width: 100%;
+    max-width: 1440px;
     padding-left: 50px;
     padding-right: 70px;
     display: flex;
@@ -15,6 +16,11 @@
         padding: 20px;
     }
 
+    .searchBar {
+        display: flex;
+        gap: 20px;
+    }
+
     #searchFieldID {
         background-color: white;
         padding: 10px 10px;
@@ -22,6 +28,14 @@
         width: 320px;
         color: black;
         border-radius: 15px;
+    }
+
+    .btnSearch {
+        background-color: grey;
+        padding: 10px 25px;
+        border: 1px solid white;
+        border-radius: 15px;
+        font-size: 1.5rem;
     }
 }
 

@@ -1,6 +1,6 @@
 const pokemonCache = {};
 // const evolutionCache = {};
-const pokemonLimit = 20;
+const pokemonLimit = 40;
 let offset = 0;
 
 const pokedex = document.getElementById("pokedexGridID");
@@ -116,12 +116,16 @@ btnLoadMore.addEventListener("click", async () => {
     await loadAndRenderPokemon();
 });
 
+const loaderContainer = document.getElementById("loaderContainerID");
+
 function showLoader(state) {
     if (state) {
-        loader.classList.remove("hidden");
+        loaderContainer.classList.add("showLoader");
+        document.body.classList.add("no-scroll");
         btnLoadMore.disabled = true;
     } else {
-        loader.classList.add("hidden");
+        loaderContainer.classList.remove("showLoader");
+        document.body.classList.remove("no-scroll");
         btnLoadMore.disabled = false;
     }
 }
@@ -156,6 +160,7 @@ async function openPokemonOverlay(id) {
 
     overlayContainer.innerHTML = createOverlayHTML(pokemon);
     overlayContainer.classList.add("active");
+    document.body.classList.add("no-scroll");
 
     showLoader(false);
 }
@@ -168,83 +173,11 @@ overlayContainer.addEventListener("click", (event) => {
 
 function closeOverlay() {
     overlayContainer.classList.remove("active");
+    document.body.classList.remove("no-scroll");
     overlayContainer.innerHTML = "";
 }
 
-// function createOverlayHTML(pokemon) {
 
-//     let typesHTML = "";
-
-//     for (let i = 0; i < pokemon.types.length; i++) {
-//         const type = pokemon.types[i].type.name;
-
-//         typesHTML += `
-//             <div class="type ${type}">
-//                 ${type}
-//             </div>
-//         `;
-//     }
-
-//     let abilitiesHTML = "";
-
-// for (let i = 0; i < pokemon.abilities.length; i++) {
-//     abilitiesHTML += `
-//         <div>
-//             ${pokemon.abilities[i].ability.name}
-//         </div>
-//     `;
-// }
-
-// let statsHTML = "";
-
-// for (let i = 0; i < pokemon.stats.length; i++) {
-//     const stat = pokemon.stats[i];
-
-//     statsHTML += `
-//         <div>
-//             ${stat.stat.name}: ${stat.base_stat}
-//         </div>
-//     `;
-// }
-
-//     return `
-//     <div class="overlayBackground" id="overlayBackground">
-//         <div class="overlayCard ${pokemon.types[0].type.name}">
-
-//             <button onclick="closeOverlay()" class="closeBtn">X</button>
-
-//             <img
-//                 class="pokemonImage"
-//                 src="${pokemon.sprites.other["official-artwork"].front_default}"
-//             >
-
-//             <p class="pokemonNumber">#${pokemon.id}</p>
-
-//             <h2 class="pokemonName">${pokemon.name}</h2>
-
-//             <div class="pokemonInfo">
-//                 <div>Height: ${pokemon.height}</div>
-//                 <div>Weight: ${pokemon.weight}</div>
-//             </div>
-
-//             <h3>Abilities</h3>
-//             <div class="abilities">
-//                 ${abilitiesHTML}
-//             </div>
-
-//             <h3>Stats</h3>
-//             <div class="stats">
-//                 ${statsHTML}
-//             </div>
-
-//             <div class="types">
-//                 ${typesHTML}
-//             </div>
-
-//         </div>
-//     </div>
-// `;
-// }
 
 function createOverlayHTML(pokemon) {
     let typesHTML = "";
