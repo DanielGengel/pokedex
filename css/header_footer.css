@@ -37,6 +37,10 @@
         border-radius: 15px;
         font-size: 1.5rem;
     }
+
+    .btnSearch:hover {
+        color: red;
+    }
 }
 
 .mainHeader,
